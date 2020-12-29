@@ -1,0 +1,28 @@
+.item{
+    float: left;
+    font-size: 17px;
+    text-align: left;
+    width: 700px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 600px;
+
+    border:solid,white;
+}
+
+img{
+    float: left;
+    width: 300px;
+    height: 200px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    margin-right: 20px;
+}
+
+.description{
+    font-size: 12px;
+}
+
+a{ 
+    color: inherit;
+} 
