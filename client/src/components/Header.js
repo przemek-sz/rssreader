@@ -1,4 +1,5 @@
 import React from 'react';
+import logoRSS from '../assets/logoRSS.png';
 import { NavLink } from 'react-router-dom';
 import '../css/Header.css';
 import { connect } from 'react-redux';
@@ -17,19 +18,22 @@ class Header extends React.Component {
 
         let authButtons;
         if (this.props.auth.auth == null) {
-            authButtons = <div id="authbuttons">
+            authButtons = <div className="authbuttons">
                 <NavLink to="/login"><button>Login</button></NavLink>
                 <NavLink to="/register"><button>Register</button></NavLink>
             </div>
         }
         else
-            authButtons = <div id="authbuttons">
+            authButtons = <div className="authbuttons">
                  <NavLink to="/findchannel"><button>Znajdz kanał</button></NavLink>
                 <button onClick={this.onClickLogout}>Logout</button>
             </div>
        
             return (
                 <div id="header">
+                    <NavLink to="/">
+                    <img id='logo' src={logoRSS} alt='logo'></img>
+                    </NavLink>
                     {authButtons}
                 </div>
             );

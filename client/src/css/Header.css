@@ -1,6 +1,10 @@
-.header{
-    color: red;
-}
 .authbuttons{
     float: right;
+}
+
+#logo{
+    height: 95%;
+    width: 7%;
+    margin-top: 0;
+    margin-left: 55px;
 }

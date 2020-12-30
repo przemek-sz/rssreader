@@ -1,10 +1,11 @@
 import React from 'react';
-import { Route, BrowserRouter, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import '../css/Content.css';
 import Login from './Login';
 import Register from './Register';
 import Channel from './rss/Channel';
 import Items from './rss/Items';
+import ItemsPerChannel from './rss/ItemsPerChannel';
 
 class Content extends React.Component{
 

@@ -40,11 +40,12 @@ public class ItemController {
             feeds.add(feedProcess.feedFactory(feedProcess.getXmlFeed(rssChannel.getRssUrl())));
         }
 
+        /*
         for (Channel f:feeds) {
             for(Item i: f.getItems()){
                 System.out.println(i.getImgLink());
             }
-        }
+        }*/
         return feeds;
     }
 

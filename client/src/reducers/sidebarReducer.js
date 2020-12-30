@@ -1,4 +1,4 @@
-const initState = {channels:[{title:"C"}]}
+const initState = {channels:[{title:""}]}
 
 const sidebarReducer = (state = initState, action) => {
     if(action.type==='UPDATE_SIDEBAR'){

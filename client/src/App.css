@@ -4,29 +4,31 @@
 }
 
 #header {
-  float: top;
-  text-align: right;
-  margin-top: 0%;
-  height: 4%;
+  z-index: 2;
+  position: fixed;
+  background-color:#121212;;
+  height: 70px;
+  width: 100%;
   border-bottom: #737373 0.5px solid;
 }
 
 #sidebar {
-  float: left;
-  width: 9%;
+  position: fixed;
   height: 100%;
-  border-right: #737373 0.5px solid;
+  width: 12%;
+  padding-top: 100px;
   text-align: center;
-  padding-top: 10px;
+  border-right: #737373 0.5px solid;
+  font-size: 15px;
+  color: #A2A4A3;
 }
 
 #content {
   float: right;
   width: 90%;
-  height: 100%;
-  margin-bottom: 0px;
+  margin-top: 75px;
   text-align: center;
-  padding-top: 30px;
+  left:10%;
 }
 
 /*
