@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import '../../css/Item.css';
+import gifLoading from '../../assets/gifLoading.gif';
 
 class Items extends React.Component {
 
@@ -33,13 +34,16 @@ class Items extends React.Component {
                     data:this.props.channel.channel
                 })
                     .then((response) => {
+                        /*
                         let items = [];
                         response.data.forEach(element => {
                             element.items.forEach(item => {
                                 items.push(item)
                             })
                         });
-                        this.setState({ items: items })
+                        this.setState({ items: items })*/
+                        console.log(response.data)
+                        this.setState({items:response.data})
                     });
             } else {
                 axios({
@@ -51,13 +55,7 @@ class Items extends React.Component {
                     }
                 })
                     .then((response) => {
-                        let items = [];
-                        response.data.forEach(element => {
-                            element.items.forEach(item => {
-                                items.push(item)
-                            })
-                        });
-                        this.setState({ items: items })
+                        this.setState({items:response.data})
                     });
             }
         }
@@ -66,15 +64,19 @@ class Items extends React.Component {
     render() {
 
         if (this.state.channel !== this.props.channel.channel) {
-            console.log('nie takie same');
             this.setState({ channel: this.props.channel.channel })
             this.getItems();
         }
 
         let items = this.state.items.map(e => {
+            let img;
+            if(e.imgLink==="https://fakeimg.pl/640x360")
+            img="";
+            else
+            img=<img src={e.imgLink} alt={"img"} />
             return (
                 <a href={e.link} target="_blank"><div className="item">
-                    <img src={e.imgLink} alt={"img"} />
+                    {img}
                     <strong>{e.title}</strong><br></br><br></br>
                     <span className="description">{e.description}</span>
                 </div></a>
@@ -82,7 +84,7 @@ class Items extends React.Component {
         })
 
         return (
-            <div>
+            <div>      
                 {items}
             </div>
         )

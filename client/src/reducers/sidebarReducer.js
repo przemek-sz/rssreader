@@ -6,6 +6,14 @@ const sidebarReducer = (state = initState, action) => {
             channels:action.channels
         }  
     }
+    if(action.type==='ADD_CHANNEL'){
+        return{
+            channels:[
+                ...state.channels,
+                action.channel
+            ]
+        }  
+    }
 
     return state;
 }

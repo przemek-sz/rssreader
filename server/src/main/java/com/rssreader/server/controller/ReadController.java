@@ -27,7 +27,8 @@ public class ReadController {
 
         System.out.println(url);
 
-        return feedProcess.feedFactory(feedProcess.getXmlFeed(url));
+        //return feedProcess.feedFactory(feedProcess.getXmlFeed(url));
+        return null;
 
     }
 

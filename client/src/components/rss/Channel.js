@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import '../../css/Form.css';
 
 class Channel extends React.Component{
 
@@ -59,6 +60,7 @@ class Channel extends React.Component{
             'data': channel
         })
             .then((response) => {
+                this.props.addChannelToSidebar(channel);
             });
     }
 
@@ -78,9 +80,9 @@ class Channel extends React.Component{
         return(
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <label>Podaj rss lub adres strony:</label>
-                    <input type="text" id="url" onChange={this.handleChange}/><br></br>
-                    <input className="buttonSend" type="submit" value="Szukaj"/>
+                    <label>Podaj rss lub adres strony: </label>
+                    <input className="txtinput" type="text" id="url" onChange={this.handleChange}/><br></br>
+                    <input className="submitinput" type="submit" value="Szukaj"/>
                 </form><br></br><br></br>
 
                 {channels}
@@ -97,4 +99,10 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(Channel);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addChannelToSidebar: (newChannel) => {dispatch({ type: 'ADD_CHANNEL', channel: newChannel })}
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Channel);

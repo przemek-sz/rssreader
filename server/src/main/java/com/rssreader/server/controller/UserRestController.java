@@ -33,6 +33,7 @@ public class UserRestController {
 
     @RequestMapping(method = RequestMethod.GET)
     public List<AllUserDto> getAllUsers(){
+        System.out.println("userService.getAllUsers()");
         return userService.getAllUsers();
     }
 
@@ -43,6 +44,7 @@ public class UserRestController {
 
     @RequestMapping(value="/{id}",method = RequestMethod.DELETE)
     public void removeUser(@PathVariable Long id){
+        System.out.println(id);
         userService.removeUser(userService.getByid(id));
     }
 

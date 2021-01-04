@@ -12,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.security.Principal;
-import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/api/channel")
@@ -38,7 +35,6 @@ public class ChannelController {
 
     @RequestMapping(method = RequestMethod.POST,value = "/new")
     public List<RssChannelDto> newChannel(@RequestBody String url){
-
        return readUrl.getChannel(url);
     }
 
@@ -57,23 +53,16 @@ public class ChannelController {
         }
 
         RssChannel rssChannel=dtoToEntity.convert(rssChannelDto);
-        rssChannel.setUser(userService.getByUsername(jwtTokenUtil.getUsernameFromToken(token.split(" ")[1])));
 
-        rssChannelService.add(rssChannel);
+        rssChannelService.follow(rssChannel,jwtTokenUtil.getUsernameFromToken(token.split(" ")[1]));
     }
 
      @GetMapping
      public List<RssChannelDto> getAllByUser(@RequestHeader("Authorization") String token){
 
         String username = jwtTokenUtil.getUsernameFromToken(token.split(" ")[1]);
-        System.out.println("getAll");
-        for(RssChannel rssChannel : rssChannelService.getAllChannels(userService.getByUsername(username).getId())){
-            System.out.println(rssChannel.getTitle());
-        }
 
-
-
-        return entityToDto.convertAll(rssChannelService.getAllChannels(userService.getByUsername(username).getId()));
+        return entityToDto.convertAll(rssChannelService.getAllChannelsByUser(userService.getByUsername(username)));
 
     }
 

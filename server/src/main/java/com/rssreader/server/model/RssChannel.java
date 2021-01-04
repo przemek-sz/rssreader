@@ -1,9 +1,10 @@
 package com.rssreader.server.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "rsschannel")
 public class RssChannel {
 
     @Id
@@ -15,9 +16,16 @@ public class RssChannel {
     private String title;
     private String description;
 
+    /*
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private User user;*/
+
+    @OneToMany(mappedBy = "rssChannel")
+    private Set<Item> itemSet = new HashSet<>();
+
+    @OneToMany(mappedBy = "rsschannel")
+    private Set<UserChannel> channelSet = new HashSet<>();
 
     public RssChannel(){
 
@@ -68,11 +76,19 @@ public class RssChannel {
         this.description = description;
     }
 
-    public User getUser() {
-        return user;
+    public Set<UserChannel> getChannelSet() {
+        return channelSet;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setChannelSet(Set<UserChannel> channelSet) {
+        this.channelSet = channelSet;
+    }
+
+    public Set<Item> getItemSet() {
+        return itemSet;
+    }
+
+    public void setItemSet(Set<Item> itemSet) {
+        this.itemSet = itemSet;
     }
 }

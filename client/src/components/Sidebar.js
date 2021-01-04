@@ -17,8 +17,6 @@ class Sidebar extends React.Component {
 
     render() {
         let channels = this.props.channels.map(e => {
-            console.log(e)
-            console.log('e makarena')
             if (e.title !== "") {
                 return (
                     <div onClick={() => this.chooseChannel(e)}>

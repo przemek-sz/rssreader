@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import '../css/Form.css';
 
 class Register extends React.Component{
 
@@ -35,13 +36,13 @@ class Register extends React.Component{
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <label>Username:</label>
-                    <input type="text" id="username" onChange={this.handleChange}/><br></br>
-                    <label>Password:</label>
-                    <input type="text" id="password" onChange={this.handleChange}/><br></br>
+                    <label>Username: </label>
+                    <input className="txtinput" type="text" id="username" onChange={this.handleChange}/><br></br>
+                    <label>Password: </label>
+                    <input className="txtinput" type="text" id="password" onChange={this.handleChange}/><br></br>
                     <label>Email: </label>
-                    <input style={{marginLeft:'25px'}} type="text" id="email" onChange={this.handleChange}/><br></br>
-                    <input className="buttonSend" type="submit" value="Rejestracja"/>
+                    <input className="txtinput" style={{marginLeft:'25px'}} type="text" id="email" onChange={this.handleChange}/><br></br>
+                    <input className="submitinput" type="submit" value="Zarejestruj"/>
                 </form>
 
             </div>

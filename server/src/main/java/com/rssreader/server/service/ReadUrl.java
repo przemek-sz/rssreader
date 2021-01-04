@@ -91,11 +91,22 @@ public class ReadUrl {
 
 
 
-            if(rssHrefMatcher.find()&&descriptionMatcher.find()&&titleMatcher.find()) {
-                channelList.add(new RssChannelDto(rssHrefMatcher.group(1),url,titleMatcher.group(1),descriptionMatcher.group(1)));
+            if(rssHrefMatcher.find()) {
+                RssChannelDto rssChannelDto = new RssChannelDto();
+                String rssUrl = rssHrefMatcher.group(1);
+                rssChannelDto.setRssUrl(rssUrl);
 
+                if (descriptionMatcher.find())
+                    rssChannelDto.setDescription(descriptionMatcher.group(1));
+                else rssChannelDto.setDescription("");
+
+                if(titleMatcher.find())
+                    rssChannelDto.setTitle(titleMatcher.group(1));
+                else rssChannelDto.setTitle(url.split("//")[1]);
+
+                rssChannelDto.setUrl(url);
+                channelList.add(rssChannelDto);
             }
-
         }
 
 

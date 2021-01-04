@@ -16,8 +16,12 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable
     private Set<UserRole> roles = new HashSet<>();
-    @OneToMany(mappedBy = "user")
-    private Set<RssChannel> channelSet = new HashSet<>();
+
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
+    private Set<UserChannel> channelSet = new HashSet<>();
+
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
+    private Set<UserItem> useritemSet = new HashSet<>();
 
 
 
@@ -57,22 +61,19 @@ public class User {
         this.roles = roles;
     }
 
-    public Set<RssChannel> getChannelSet() {
+    public Set<UserChannel> getChannelSet() {
         return channelSet;
     }
 
-    public void setChannelSet(Set<RssChannel> channelSet) {
+    public void setChannelSet(Set<UserChannel> channelSet) {
         this.channelSet = channelSet;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", userName='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", roles=" + roles +
-                '}';
+    public Set<UserItem> getUseritemSet() {
+        return useritemSet;
+    }
+
+    public void setUseritemSet(Set<UserItem> useritemSet) {
+        this.useritemSet = useritemSet;
     }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import '../css/Form.css';
 
 class Login extends React.Component {
 
@@ -56,13 +57,13 @@ class Login extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <label>Username:</label>
-                <input type="text" id="username" onChange={this.handleChange} /><br></br>
+                <label>Username: </label>
+                <input className="txtinput" type="text" id="username" onChange={this.handleChange} /><br></br>
 
                 <label>Password: </label>
-                <input type="text" id="password" onChange={this.handleChange} /><br></br>
+                <input className="txtinput" type="text" id="password" onChange={this.handleChange} /><br></br>
 
-                <input className="buttonSend" type="submit" value="Zaloguj" />
+                <input className="submitinput" type="submit" value="Zaloguj" />
             </form>
         );
     }

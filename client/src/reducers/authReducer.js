@@ -7,7 +7,8 @@ const authReducer = (state = initState, action) => {
             auth:{
                 username:action.auth.username,
                 token:action.auth.token,
-                expiration:action.auth.expiration
+                expiration:action.auth.tokenexpirationdate,
+                roles:action.auth.roles
             }
         }  
     }

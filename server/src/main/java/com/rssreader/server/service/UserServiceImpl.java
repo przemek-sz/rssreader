@@ -3,7 +3,11 @@ package com.rssreader.server.service;
 
 import com.rssreader.server.dto.AllUserDto;
 import com.rssreader.server.dto.UserRegistrationDto;
+import com.rssreader.server.model.RssChannel;
 import com.rssreader.server.model.User;
+import com.rssreader.server.model.UserChannel;
+import com.rssreader.server.repository.UserChannelRepository;
+import com.rssreader.server.repository.UserItemRepository;
 import com.rssreader.server.repository.UserRepository;
 import com.rssreader.server.repository.UserRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +25,12 @@ public class UserServiceImpl implements UserService {
     UserRoleRepository userRoleRepository;
     BaseConverter<User, AllUserDto> baseConverter;
     BaseConverter<UserRegistrationDto,User> registrationBaseConverter;
+    @Autowired
+    RssChannelService rssChannelService;
+    @Autowired
+    UserChannelRepository userChannelRepository;
+    @Autowired
+    UserItemRepository userItemRepository;
 
     @Autowired
     UserServiceImpl(UserRepository userRepository, UserRoleRepository userRoleRepository, BaseConverter<User, AllUserDto> baseConverter, BaseConverter<UserRegistrationDto,User> registrationBaseConverter){
@@ -50,6 +60,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void removeUser(User user) {
+
+        user.getChannelSet().forEach(userChannel -> {
+            userChannelRepository.delete(userChannel);
+        });
+        user.getUseritemSet().forEach(userItem -> {
+            userItemRepository.delete(userItem);
+        });
+
         userRepository.delete(user);
     }
 

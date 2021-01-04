@@ -5,7 +5,7 @@ import Login from './Login';
 import Register from './Register';
 import Channel from './rss/Channel';
 import Items from './rss/Items';
-import ItemsPerChannel from './rss/ItemsPerChannel';
+import UserList from './admin/Userlist';
 
 class Content extends React.Component{
 
@@ -19,6 +19,7 @@ class Content extends React.Component{
                     <Route exact path="/register" component={Register}/>
                     <Route exact path="/findchannel" component={Channel}/>
                     <Route exact path="/items" component={Items}/>
+                    <Route exact path="/userlist" component={UserList}/>
                 </Switch>
             </div>
         );

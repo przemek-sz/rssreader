@@ -1,8 +1,7 @@
 package com.rssreader.server.service;
 
 import com.rssreader.server.feed.Channel;
-import com.rssreader.server.feed.Feed;
-import com.rssreader.server.feed.Item;
+import com.rssreader.server.model.Item;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -51,7 +50,7 @@ public class FeedProcess {
     }
 
 
-    public Channel feedFactory(Document document){
+    public List<Item> feedFactory(Document document){
 
 
         NodeList nodeList = document.getElementsByTagName("item");
@@ -76,22 +75,23 @@ public class FeedProcess {
             }else {
                 imgLink="https://fakeimg.pl/640x360";
             }
-            Item item = new Item(element.getElementsByTagName("title").item(0).getTextContent(),
-                    element.getElementsByTagName("link").item(0).getTextContent(),
-                    element.getElementsByTagName("description").item(0).getTextContent().replaceAll("<[^>]*>",""),
-                            imgLink);
 
-
+            Item item = new Item();
+            item.setTitle(element.getElementsByTagName("title").item(0).getTextContent());
+            item.setLink(element.getElementsByTagName("link").item(0).getTextContent());
+            item.setDescription(element.getElementsByTagName("description").item(0).getTextContent().replaceAll("<[^>]*>",""));
+            item.setImgLink(imgLink);
+            item.setPubdate(element.getElementsByTagName("pubDate").item(0).getTextContent());
 
             items.add(item);
         }
 
 
-        Channel feed=setChannel(document);
+        //Channel feed=setChannel(document);
 
-        feed.setItems(items);
+        //feed.setItems(items);
 
-        return feed;
+        return items;
     }
 
 

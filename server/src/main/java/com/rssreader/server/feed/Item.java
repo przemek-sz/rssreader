@@ -9,13 +9,15 @@ public class Item implements Feed {
     private String link;
     private String description;
     private String imgLink;
+    private String pubdate;
 
 
-    public Item(String title,String link,String description,String imgLink){
+    public Item(String title,String link,String description,String imgLink,String pubdate){
         this.title=title;
         this.link=link;
         this.description=fabricateDescription(description);
         this.imgLink =imgLink;
+        this.pubdate=pubdate;
     }
 
     @Override
@@ -50,6 +52,18 @@ public class Item implements Feed {
 
     public String getImgLink() {
         return imgLink;
+    }
+
+    public void setImgLink(String imgLink) {
+        this.imgLink = imgLink;
+    }
+
+    public String getPubdate() {
+        return pubdate;
+    }
+
+    public void setPubdate(String pubdate) {
+        this.pubdate = pubdate;
     }
 
     public String setJpgLink(String text) {
