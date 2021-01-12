@@ -1,7 +1,9 @@
 package com.rssreader.server.service;
 
 
+import com.rssreader.server.config.security.JwtTokenUtil;
 import com.rssreader.server.dto.AllUserDto;
+import com.rssreader.server.dto.UserDto;
 import com.rssreader.server.dto.UserRegistrationDto;
 import com.rssreader.server.model.RssChannel;
 import com.rssreader.server.model.User;
@@ -32,6 +34,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserItemRepository userItemRepository;
 
+
     @Autowired
     UserServiceImpl(UserRepository userRepository, UserRoleRepository userRoleRepository, BaseConverter<User, AllUserDto> baseConverter, BaseConverter<UserRegistrationDto,User> registrationBaseConverter){
         this.userRepository=userRepository;
@@ -54,7 +57,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(User user) {
+    public void updateUser(UserRegistrationDto userDto, String username) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+        User user = getByUsername(username);
+
+        user.setUsername(userDto.getUsername());
+        user.setEmail(userDto.getEmail());
+        user.setPassword(encoder.encode(userDto.getPassword()));
+
+
         userRepository.save(user);
     }
 

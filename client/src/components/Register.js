@@ -26,7 +26,7 @@ class Register extends React.Component{
     sendData = () => {
         console.log(this.state)
         
-        axios.post('http://localhost:8080/api/user',this.state)
+        axios.put('http://localhost:8080/api/user',this.state)
         .then((response) =>{
             this.props.history.push("/");
         })

@@ -11,6 +11,9 @@ import java.util.List;
 public interface ItemService {
 
     public List<ItemDto> getItemsByUser(User user);
+    public List<ItemDto> getReadLaterItemsByUser(User user);
+    public List<ItemDto> getFavoriteItemsByUser(User user);
+    public List<ItemDto> getTodayItemsByUser(User user);
     public List<ItemDto> getItemsByChannel(RssChannel rssChannel,User user);
     public List<Item> getItemsFromChannel(User user);
     public void updateItemsOnDataBase(List<Item> items);

@@ -23,6 +23,7 @@
   color: #A2A4A3;
   overflow-y: scroll;
   background-color:#121212;;
+  font-weight: bold;
 }
 
 #content {
@@ -30,7 +31,7 @@
   width: 90%;
   margin-top: 75px;
   text-align: center;
-  left:10%;
+  
 }
 
 .normalbutton{
@@ -43,6 +44,18 @@
     width: 70px;
     font-size: 15px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 .App-logo {

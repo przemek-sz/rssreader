@@ -11,8 +11,9 @@ public class ItemDto {
     boolean readed;
     boolean hide;
     boolean readlater;
+    boolean favorite;
 
-    public ItemDto(Long id, String title, String link, String description, String imgLink, String pubdate, boolean readed, boolean hide, boolean readlater) {
+    public ItemDto(Long id, String title, String link, String description, String imgLink, String pubdate, boolean readed, boolean hide, boolean readlater, boolean favorite) {
         this.id = id;
         this.title = title;
         this.link = link;
@@ -22,6 +23,7 @@ public class ItemDto {
         this.readed = readed;
         this.hide = hide;
         this.readlater = readlater;
+        this.favorite = favorite;
     }
 
     public Long getId() {
@@ -94,5 +96,13 @@ public class ItemDto {
 
     public void setReadlater(boolean readlater) {
         this.readlater = readlater;
+    }
+
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
     }
 }

@@ -19,6 +19,7 @@ public class UserItem {
     boolean readed;
     boolean hide;
     boolean readlater;
+    boolean favorite;
 
     public User getUser() {
         return user;
@@ -58,5 +59,13 @@ public class UserItem {
 
     public void setReadlater(boolean readlater) {
         this.readlater = readlater;
+    }
+
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
     }
 }

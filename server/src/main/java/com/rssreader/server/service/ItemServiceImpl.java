@@ -10,8 +10,14 @@ import com.rssreader.server.repository.UserItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 @Service
@@ -42,8 +48,44 @@ public class ItemServiceImpl implements ItemService{
             Item item = userItem.getItem();
             items.add(itemToDtoConverter.convert(userItem.getItem(),userItem));
         });
-        return items;
+        return items.stream().filter((e)->e.isHide()?false:true).collect(Collectors.toList());
     }
+
+    @Override
+    public List<ItemDto> getReadLaterItemsByUser(User user) {
+        return getItemsByUser(user)
+                .stream()
+                .filter((e)->e.isReadlater()?true:false)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ItemDto> getFavoriteItemsByUser(User user) {
+        return getItemsByUser(user)
+                .stream()
+                .filter((e)->e.isFavorite()?true:false)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ItemDto> getTodayItemsByUser(User user) {
+
+        DateFormat df = new SimpleDateFormat("EEE, dd MMM yyyy kk:mm:ss", Locale.ENGLISH);
+
+        return getItemsByUser(user)
+                .stream()
+                .filter(el->{
+                    try {
+                        Date result = df.parse(el.getPubdate().split("\\+")[0]);
+                        //return result.compareTo(new Date())==1?true:false;
+                        return Math.abs(result.getTime() - new Date().getTime()) < TimeUnit.DAYS.toMillis(1);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    return false;
+                }).collect(Collectors.toList());
+    }
+
 
     @Override
     public List<ItemDto> getItemsByChannel(RssChannel rssChannel,User user) {

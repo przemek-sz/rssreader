@@ -1,7 +1,9 @@
 package com.rssreader.server.controller;
 
 
+import com.rssreader.server.config.security.JwtTokenUtil;
 import com.rssreader.server.dto.AllUserDto;
+import com.rssreader.server.dto.JwtRequest;
 import com.rssreader.server.dto.UserRegistrationDto;
 import com.rssreader.server.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,20 +17,23 @@ public class UserRestController {
 
 
     UserService userService;
+    JwtTokenUtil jwtTokenUtil;
 
     @Autowired
-    UserRestController(UserService userService){
+    UserRestController(UserService userService, JwtTokenUtil jwtTokenUtil){
         this.userService=userService;
+        this.jwtTokenUtil=jwtTokenUtil;
     }
 
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.PUT)
     public void addUser(@RequestBody UserRegistrationDto userDto){
         userService.addUser(userDto);
     }
 
-    public void updateUser(){
-
+    @RequestMapping(method = RequestMethod.POST)
+    public void updateUser(@RequestBody UserRegistrationDto userDto,@RequestHeader("Authorization") String token){
+        userService.updateUser(userDto,jwtTokenUtil.getUsernameFromToken(token.split(" ")[1]));
     }
 
     @RequestMapping(method = RequestMethod.GET)

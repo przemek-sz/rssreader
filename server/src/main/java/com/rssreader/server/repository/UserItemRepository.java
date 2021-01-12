@@ -9,4 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserItemRepository extends JpaRepository<UserItem, UserItemID> {
+
+    public UserItem getByItemIdAndUserId(Long itemId,Long userId);
+
 }

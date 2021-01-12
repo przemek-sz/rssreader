@@ -10,7 +10,8 @@ public class ItemToDtoConverter implements DoubleConverter<Item, UserItem, ItemD
 
     @Override
     public ItemDto convert(Item from1, UserItem from2) {
-        return new ItemDto(from1.getId(), from1.getTitle(), from1.getLink(), from1.getDescription(), from1.getImgLink(), from1.getPubdate(), from2.isReaded(), from2.isHide(), from2.isReadlater());
+        String description = from1.getDescription().length()>600?from1.getDescription().substring(0,600)+"...":from1.getDescription();
+        return new ItemDto(from1.getId(), from1.getTitle(), from1.getLink(), description, from1.getImgLink(), from1.getPubdate(), from2.isReaded(), from2.isHide(), from2.isReadlater(), from2.isFavorite());
     }
 
     @Override
