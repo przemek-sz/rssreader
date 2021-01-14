@@ -12,6 +12,8 @@ class Header extends React.Component {
     onClickLogout = () => {
         console.log(this.props.auth.auth)
         this.props.logout();
+        this.props.clearSidebar();
+
 
         //window.location.reload();
     }
@@ -62,7 +64,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        logout: () => { dispatch({ type: 'LOGOUT' }) }
+        logout: () => { dispatch({ type: 'LOGOUT' }) },
+        clearSidebar: () => { dispatch({ type: 'CLEAR_CHANNELS' }) }
     }
 }
 
