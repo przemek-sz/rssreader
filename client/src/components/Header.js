@@ -1,6 +1,7 @@
 import React from 'react';
 import logoRSS from '../assets/logoRSS.png';
 import Logo2 from '../assets/Logo2.png';
+import LoadGifLeft from '../assets/loadGifLeft.gif';
 import { NavLink } from 'react-router-dom';
 import '../css/Header.css';
 import { connect } from 'react-redux';

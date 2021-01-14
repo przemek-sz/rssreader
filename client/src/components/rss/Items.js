@@ -130,14 +130,10 @@ class Items extends React.Component {
                 .then((response) => {
                     this.updateState(item);
                 });
-
         }
-
-
     }
 
     render() {
-
 
         if (this.state.channel !== this.props.channel.channel) {
             this.setState({ channel: this.props.channel.channel })
