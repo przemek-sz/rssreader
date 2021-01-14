@@ -84,18 +84,18 @@ class Items extends React.Component {
                         this.setState({ items: response.data })
                     });
             } else {
-                let url="http://localhost:8080/api/item";
+                let url = "http://localhost:8080/api/item";
                 console.log(this.props.channel.channel)
-                switch(this.props.channel.channel){
-                    case"favorite":
-                    url="http://localhost:8080/api/item/favorite";
-                    break;
-                    case"readlater":
-                    url="http://localhost:8080/api/item/readlater";
-                    break;
-                    case"today":
-                    url="http://localhost:8080/api/item/today";
-                    break;
+                switch (this.props.channel.channel) {
+                    case "favorite":
+                        url = "http://localhost:8080/api/item/favorite";
+                        break;
+                    case "readlater":
+                        url = "http://localhost:8080/api/item/readlater";
+                        break;
+                    case "today":
+                        url = "http://localhost:8080/api/item/today";
+                        break;
                 }
                 axios({
                     'method': 'get',
@@ -144,41 +144,48 @@ class Items extends React.Component {
             this.getItems();
         }
 
-        
-        let sortedItems=this.state.items.sort((a, b) => Date.parse(b.pubdate) - Date.parse(a.pubdate));
-      
+
+        let sortedItems = this.state.items.sort((a, b) => Date.parse(b.pubdate) - Date.parse(a.pubdate));
+
         let items = sortedItems.map(e => {
-            if(e.hide)
-            return("");
-     
+            if (e.hide)
+                return ("");
+
 
 
             let img = (e.imgLink === "https://fakeimg.pl/640x360") ? "" : <img className="itemImage" src={e.imgLink} alt={"img"} />;
             let readLaterImg = (e.readlater) ? bookmarkTrue : bookmark;
             let favoriteColor = (e.favorite) ? 'gold' : 'white';
             let readedColor = (e.readed) ? '#2bb14c' : 'white';
-            let pubdate=e.pubdate.split(",")[1].split(" ",5).map(f=>{
-                return(f+" ");
+            let pubdate = e.pubdate.split(",")[1].split(" ", 5).map(f => {
+                return (f + " ");
             });
 
             return (
-                <div className="item" style={e.readed?{opacity:'0.3'}:{opacity:'1'}}>
+                <div className="item" style={e.readed ? { opacity: '0.3' } : { opacity: '1' }}>
                     <div className="bookmarks">
                         <img onClick={() => this.onClickReadLater(e)} className="bookmark" style={{ height: '15px', width: '20px' }} src={readLaterImg} alt={"img"} />
                         <span onClick={() => this.onClickFavorite(e)} className="bookmark" style={{ color: favoriteColor }}>&#9734;</span>
                         <span onClick={() => this.onClickReaded(e)} className="bookmark" style={{ color: readedColor }}>&#10004;</span>
                         <span onClick={() => this.onClickHide(e)} className="bookmark">&#10006;</span>
                         <div className="pubDate">
-                        {pubdate}
+                            {pubdate}
                         </div>
                     </div>
-                    
+
                     <br></br>
                     <a href={e.link} target="_blank">
-                        {img}
-                        <strong className="title">{e.title}</strong><br></br><br></br>
-                        <span className="description">{e.description}</span>
+                        <div className="imgAndDesc">
+                            {img}
+                            <div className="columnRight">
+                                <strong className="title">{e.title}</strong><br></br><br></br>
+                                <span className="description">{e.description}</span>
+                            </div>
+
+                        </div>
+
                     </a>
+                    
                 </div>
             )
         })

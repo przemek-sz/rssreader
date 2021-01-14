@@ -1,0 +1,30 @@
+.channel{
+    text-align: left;
+    margin-left: 37%;
+    margin-right: 40%;
+    margin-top: 60px;
+    margin-bottom: 10px;
+}
+
+.fav{
+    float: left;
+    height: 50px;
+    width: 50px;
+    margin-right: 8px;
+    margin-top: 8px;
+}
+
+.addChButton{
+    float: right;
+    margin-left: 20px;
+    margin-top: 22px;
+    background-color: #464649;
+    border-color: #2bb14c;
+    border-width: 1px;
+    border-radius: 3px;
+    color: white;
+}
+
+#searchForm{
+    margin-right: 3%;
+}

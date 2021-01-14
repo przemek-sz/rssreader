@@ -1,6 +1,7 @@
 package com.rssreader.server.service;
 
 
+import com.rssreader.server.dto.RssChannelDto;
 import com.rssreader.server.model.RssChannel;
 import com.rssreader.server.model.User;
 
@@ -18,7 +19,7 @@ public interface RssChannelService {
 
     public List<RssChannel> getAllChannelsByUser(User user);
 
-    void delete(RssChannel rssChannel);
+    void deleteChannelByUser(RssChannelDto rssChannelDto, User user);
 
     public RssChannel getChannel(String url);
 }

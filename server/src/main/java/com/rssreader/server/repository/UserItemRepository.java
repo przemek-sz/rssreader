@@ -11,5 +11,6 @@ import org.springframework.stereotype.Repository;
 public interface UserItemRepository extends JpaRepository<UserItem, UserItemID> {
 
     public UserItem getByItemIdAndUserId(Long itemId,Long userId);
+    public void deleteByUserIdAndItemId(Long userId,Long rssChannelId);
 
 }

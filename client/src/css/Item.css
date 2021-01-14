@@ -1,13 +1,14 @@
 .item{
     font-size: 17px;
     text-align: left;
-    width: 700px;
-    
+    width: 50%;
+    height: 100%;
     margin-left: 28%;
-    margin-top: 100px;
-    margin-bottom: 30px;
+    
+    margin-bottom: 10%;
     border:solid,white;
 }
+
 
 a:link {
 
@@ -15,13 +16,21 @@ a:link {
   
 }
 
+.imgAndDesc{
+    padding-bottom: 0px;
+}
+.columnRight{
+    /*overflow: hidden;*/
+    padding-bottom: 0px;
+}
 
 .itemImage{
     float: left;
     width: 350px;
     height: 250px;
-   
     margin-right: 20px;
+    margin-top: 6px;
+    padding-bottom: 0px;
 }
 
 .bookmarks{
@@ -41,21 +50,10 @@ a:link {
     color: #2bb14c;
 }
 
-
-
-img{/*
-    float: left;
-    width: 300px;
-    height: 200px;
-    margin-top: 25px;
-    margin-bottom: 25px;
-    margin-right: 20px;*/
-}
-
 .description{
     font-size: 12px;
-    float:inherit;
-    
+    font-weight: 600;
+    padding-bottom: 0px;
 }
 
 .title{
@@ -65,3 +63,5 @@ img{/*
 a{ 
     color: inherit;
 } 
+
+

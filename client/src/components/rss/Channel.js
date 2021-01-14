@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import '../../css/Form.css';
+import '../../css/ChannelAdd.css';
 
 class Channel extends React.Component{
 
@@ -66,20 +67,22 @@ class Channel extends React.Component{
 
     render(){
         
-        let channels = this.state.channels.map(channel => {
+        let channels = this.state.channels.map(e => {
             return(
-                <div>
-                    {channel.titel}<br></br>
-                    {channel.rssUrl}<br></br>
-                    {channel.description}<br></br>
-                    <button onClick={() => this.add(channel)}>Add</button>
+                <div className="channel">
+                    <img className="fav" src={e.url + '/favicon.ico'} alt=""></img>
+                    <button className="addChButton" onClick={()=>this.add(e)}>Add</button>
+                    {e.title}<br></br>
+                    {e.description}<br></br>
+                    {e.rssUrl}<br></br>
+                    <br></br><br></br>
                 </div>
             )
         });
         console.log(channels)
         return(
             <div>
-                <form onSubmit={this.handleSubmit}>
+                <form id="searchForm" onSubmit={this.handleSubmit}>
                     <label>Podaj rss lub adres strony: </label>
                     <input className="txtinput" type="text" id="url" onChange={this.handleChange}/><br></br>
                     <input className="submitinput" type="submit" value="Szukaj"/>

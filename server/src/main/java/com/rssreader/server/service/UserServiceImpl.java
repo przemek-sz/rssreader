@@ -5,6 +5,7 @@ import com.rssreader.server.config.security.JwtTokenUtil;
 import com.rssreader.server.dto.AllUserDto;
 import com.rssreader.server.dto.UserDto;
 import com.rssreader.server.dto.UserRegistrationDto;
+import com.rssreader.server.dto.UserUpdateDto;
 import com.rssreader.server.model.RssChannel;
 import com.rssreader.server.model.User;
 import com.rssreader.server.model.UserChannel;
@@ -13,6 +14,7 @@ import com.rssreader.server.repository.UserItemRepository;
 import com.rssreader.server.repository.UserRepository;
 import com.rssreader.server.repository.UserRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -57,17 +59,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(UserRegistrationDto userDto, String username) {
+    public User updateUser(UserUpdateDto userDto, String username) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
         User user = getByUsername(username);
 
-        user.setUsername(userDto.getUsername());
-        user.setEmail(userDto.getEmail());
-        user.setPassword(encoder.encode(userDto.getPassword()));
-
+        switch (userDto.getType()){
+            case "username":System.out.println(userDto.getType());user.setUsername(userDto.getValue()); break;
+            case "password":System.out.println(userDto.getType());user.setPassword(encoder.encode(userDto.getValue())); break;
+            case "email":System.out.println(userDto.getType());user.setEmail(userDto.getValue()); break;
+        }
 
         userRepository.save(user);
+
+        return user;
     }
 
     @Override

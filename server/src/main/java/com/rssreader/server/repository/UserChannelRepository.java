@@ -14,5 +14,6 @@ public interface UserChannelRepository extends JpaRepository<UserChannel, UserCh
 
     public List<UserChannel> getAllByUser(User user);
     public List<UserChannel> getAllByUserId(Long id);
+    public void deleteByUserAndRsschannel(User user,RssChannel rsschannel);
 
 }

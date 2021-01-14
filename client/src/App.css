@@ -6,10 +6,13 @@
 #header {
   z-index: 2;
   position: fixed;
-  background-color:#121212;
+ /*background-color:#121212;
+  background-color: #18181b;*/
+  background-color: #0e0e10;
+
   height: 55px;
   width: 100%;
-  border-bottom: #737373 0.5px solid;
+  /*border-bottom: #737373 0.5px solid;*/
 }
 
 #sidebar {
@@ -18,11 +21,13 @@
   width: 10%;
   padding-top: 100px;
   text-align: center;
-  border-right: #737373 0.5px solid;
+  /*border-right: #737373 0.5px solid;*/
   font-size: 12px;
   color: #A2A4A3;
   overflow-y: scroll;
-  background-color:#121212;;
+  /*background-color:#121212;
+  background-color: #18181b;*/
+  background-color: #0e0e10;
   font-weight: bold;
 }
 
@@ -43,6 +48,15 @@
     height: 30px;
     width: 70px;
     font-size: 15px;
+}
+
+.errorDiv{
+  color:red;
+  font-weight: bold;
+  margin-left: 42%;
+  margin-right: 43%;
+  margin-top: 70px;
+
 }
 
 

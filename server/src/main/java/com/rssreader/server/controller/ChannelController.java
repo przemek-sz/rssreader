@@ -9,6 +9,7 @@ import com.rssreader.server.service.ReadUrl;
 import com.rssreader.server.service.RssChannelService;
 import com.rssreader.server.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -24,6 +25,7 @@ public class ChannelController {
     UserService userService;
     @Autowired
     RssChannelService rssChannelService;
+    @Qualifier("rssChannelDtoToEntityConverter")
     @Autowired
     BaseConverter<RssChannelDto, RssChannel> dtoToEntity;
     @Autowired
@@ -64,6 +66,11 @@ public class ChannelController {
 
         return entityToDto.convertAll(rssChannelService.getAllChannelsByUser(userService.getByUsername(username)));
 
+    }
+
+    @DeleteMapping
+    public void deletUserChannel(@RequestBody RssChannelDto rssChannelDto,@RequestHeader("Authorization") String token){
+        rssChannelService.deleteChannelByUser(rssChannelDto,userService.getByUsername(jwtTokenUtil.getUsernameFromToken(token.split(" ")[1])));
     }
 
 }

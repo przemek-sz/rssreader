@@ -6,8 +6,9 @@ import '../css/Form.css';
 class Login extends React.Component {
 
     state = {
-        username: null,
-        password: null
+        username: "",
+        password: "",
+        error: false
     }
 
     handleChange = (e) => {
@@ -18,7 +19,8 @@ class Login extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.sendData();
+        if (this.state.username !== "" && this.state.password !== "")
+            this.sendData();
     }
 
     sendData = () => {
@@ -30,17 +32,21 @@ class Login extends React.Component {
                 'Content-Type': 'application/json',
                 Authorization
             },
-            'data': this.state
+            'data': { username: this.state.username, password: this.state.password }
         })
             .then((response) => {
                 this.props.login(response.data);
                 this.getChannelsForUser();
                 this.props.history.push("/items");
+            }).catch(error => {
+                this.setState({
+                    error: true
+                })
             });
     }
 
-    getChannelsForUser = () =>{
-        let Authorization = 'Bearer '+this.props.auth.auth.token;
+    getChannelsForUser = () => {
+        let Authorization = 'Bearer ' + this.props.auth.auth.token;
         axios({
             'method': 'get',
             'url': 'http://localhost:8080/api/channel',
@@ -55,16 +61,22 @@ class Login extends React.Component {
     }
 
     render() {
+        let errorDiv = (this.state.error) ?
+            <div className="errorDiv">Invalid username or password</div> :
+            <div></div>
         return (
-            <form onSubmit={this.handleSubmit}>
-                <label>Username: </label>
-                <input className="txtinput" type="text" id="username" onChange={this.handleChange} /><br></br>
+            <div>
+                {errorDiv}
+                <form onSubmit={this.handleSubmit}>
+                    <label>Username: </label>
+                    <input className="txtinput" type="text" id="username" onChange={this.handleChange} /><br></br>
 
-                <label>Password: </label>
-                <input className="txtinput" type="text" id="password" onChange={this.handleChange} /><br></br>
+                    <label>Password: </label>
+                    <input className="txtinput" type="password" id="password" onChange={this.handleChange} /><br></br>
 
-                <input className="submitinput" type="submit" value="Zaloguj" />
-            </form>
+                    <input className="submitinput" type="submit" value="Log in" />
+                </form>
+            </div>
         );
     }
 }
@@ -77,8 +89,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        login: (auth) => {dispatch({ type: 'LOGIN', auth: auth })},
-        getChannels: (newChannels) => {dispatch({ type: 'UPDATE_SIDEBAR', channels: newChannels })}
+        login: (auth) => { dispatch({ type: 'LOGIN', auth: auth }) },
+        getChannels: (newChannels) => { dispatch({ type: 'UPDATE_SIDEBAR', channels: newChannels }) }
     }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -11,9 +11,11 @@ form{
 }
 
 .submitinput{
-    background-color: #2bb14c;
+    background-color: #464649;
     border-color: #2bb14c;
+    border-width: 1px;
     color: white;
+    border-radius: 1mm;
     height: 35px;
     width: 200px;
     font-size: 20px;

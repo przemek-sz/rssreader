@@ -21,13 +21,13 @@ class Header extends React.Component {
         let userlist;
         if (this.props.auth.auth == null) {
             authButtons = <div className="authbuttons">
-                <NavLink to="/login"><button className="headerbutton">Login</button></NavLink>
-                <NavLink to="/register"><button className="headerbutton">Register</button></NavLink>
+                <NavLink to="/login"><button className="headerbutton">Log in</button></NavLink>
+                <NavLink to="/register"><button className="headerbutton">Sign up</button></NavLink>
             </div>
         }
         else {
             if (typeof (this.props.auth.auth.roles.find(e => e === "ROLE_ADMIN")) !== 'undefined') {
-                userlist = <NavLink to="/userlist"><button className="headerbutton">Lista</button></NavLink>
+                userlist = <NavLink to="/userlist"><button className="headerbutton">List</button></NavLink>
             }
 
             authButtons =
